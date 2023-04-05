@@ -1,0 +1,28 @@
+﻿<Window
+	x:Class="mybackup.Wpf.Views.ShellView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:mybackup.Wpf.Views"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:vm="clr-namespace:mybackup.Wpf.ViewModels"
+	Title="myBackup"
+	Width="800"
+	Height="450"
+	WindowStartupLocation="CenterScreen"
+	mc:Ignorable="d">
+
+	<Window.Resources>
+		<vm:ShellViewModel x:Key="ShellViewModel" />
+	</Window.Resources>
+
+	<Grid d:DataContext="{StaticResource ShellViewModel}">
+		<!--  Logo  -->
+		<TextBlock
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			FontSize="32"
+			FontWeight="Bold"
+			Text="myBackup" />
+	</Grid>
+</Window>

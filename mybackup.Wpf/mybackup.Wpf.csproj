@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <!--Assembly Information-->
+  <PropertyGroup>
+    <Title>$(AssemblyName)</Title>
+    <Authors>Nards John Isip</Authors>
+    <Description>A backup utility that copies selected files to a selected destination</Description>
+    <Product>myBackup</Product>
+    <Company>$(Authors)</Company>
+    <Copyright>Copyright © $(Company) $([System.DateTime]::UtcNow.ToString(yyyy))</Copyright>
+
+    <AssemblyTitle>$(Title)</AssemblyTitle>
+     <AssemblyName>mybackup</AssemblyName> 
+  </PropertyGroup>
+
+  <!--Version-->
+  <PropertyGroup>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
+    <ProjectStart>2023-04-05T02:25:50+08:00</ProjectStart>
+    <Base>0001-01-01T00:00:00+08:00</Base>
+
+    <!--Generated-->
+    <StartTicks>$([MSBuild]::Divide($([System.DateTime]::Parse($(ProjectStart)).ToUniversalTime().Ticks), 10000000))</StartTicks>
+    <BaseTicks>$([MSBuild]::Divide($([System.DateTime]::Parse($(Base)).ToUniversalTime().Ticks), 10000000))</BaseTicks>
+    <BuildTimeTicks>$([MSBuild]::Divide($([System.DateTime]::UtcNow.Ticks), 10000000))</BuildTimeTicks>
+    <Difference>$([MSBuild]::Subtract($(StartTicks), $(BaseTicks)))</Difference>
+    <Delta>$([MSBuild]::Subtract($(BuildTimeTicks), $(Difference)))</Delta>
+    <Revision>$([MSBuild]::Modulo($(Delta), 65535).ToString(0))</Revision>
+
+    <Version>$(VersionPrefix)$(VersionSuffix)</Version>
+    <AssemblyVersion>$(VersionPrefix).$(Revision)</AssemblyVersion>
+    <BuildTime>$([System.DateTime]::UtcNow)</BuildTime>
+  </PropertyGroup>
+  
+  <!--Packages-->
+  <ItemGroup>
+    <PackageReference Include="Caliburn.Micro" Version="4.*" />
+    <PackageReference Include="Serilog" Version="2.*" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.*" />
+  </ItemGroup>
+
+</Project>
